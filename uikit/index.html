@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>uikit Terminal HUD</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+        background: #03040b;
+      }
+      #loading {
+        position: fixed;
+        left: 50%;
+        bottom: 15%;
+        transform: translateX(-50%);
+        color: #00f0ff;
+        font: 14px/1.5 system-ui, sans-serif;
+        letter-spacing: 0.1em;
+        pointer-events: none;
+      }
+      #root {
+        display: block;
+        width: 100dvw;
+        height: 100dvh;
+        touch-action: none;
+      }
+
+      /* 画面に重ねる2Dの操作部品（配色は3DのUIに合わせる） */
+      .overlay {
+        position: fixed;
+        z-index: 1;
+        font: 12px/1 ui-monospace, 'SF Mono', Menlo, monospace;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      #mode-switch {
+        top: 16px;
+        right: 16px;
+        display: flex;
+        gap: 3px;
+        padding: 3px;
+        background: #0d1117;
+        border: 1px solid #30363d;
+        border-radius: 6px;
+      }
+      #mode-switch button {
+        padding: 6px 12px;
+        border: 0;
+        border-radius: 4px;
+        background: transparent;
+        color: #6e7681;
+        font: inherit;
+        cursor: pointer;
+      }
+      #mode-switch button:hover {
+        color: #c9d1d9;
+      }
+      #mode-switch button[aria-pressed='true'] {
+        background: #3fb950;
+        color: #0d1117;
+        font-weight: bold;
+      }
+      /* 移動用のスティック: リングの中にノブ */
+      #stick {
+        left: 24px;
+        bottom: 48px; /* 画面下のステータスバー（uikit）の上 */
+        width: 112px;
+        height: 112px;
+        box-sizing: border-box;
+        border: 2px solid #30363d;
+        border-radius: 50%;
+        background: #0d1117b3;
+        touch-action: none;
+        cursor: grab;
+      }
+      #stick:active {
+        cursor: grabbing;
+        border-color: #39c5cf;
+      }
+      #stick > span {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 48px;
+        height: 48px;
+        margin: -24px 0 0 -24px;
+        border-radius: 50%;
+        background: #39c5cf;
+        opacity: 0.75;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="root"></canvas>
+    <!-- uikit 用のフォントをMSDF化している間だけ出す（このテキストは普通のHTML） -->
+    <div id="loading">Generating font…</div>
+
+    <!-- 視点モードの切り替え -->
+    <div id="mode-switch" class="overlay" role="group" aria-label="View mode">
+      <!-- ボタンの文言は strings.js の cameraModes から入れる -->
+      <button type="button" data-mode="orbit" aria-pressed="true"></button>
+      <button type="button" data-mode="firstPerson" aria-pressed="false"></button>
+    </div>
+
+    <!-- 移動用のスティック（キーボードの WASD / 矢印キーと同じ動き） -->
+    <div id="stick" class="overlay" role="application" aria-label="Move"><span></span></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
