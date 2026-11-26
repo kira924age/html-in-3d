@@ -98,7 +98,7 @@ let ring = null;
 // ファイルサイズと読み込み時間を測りたいので、fetch で取得してから GLTFLoader.parseAsync に渡す
 async function loadCrystal() {
   const start = performance.now();
-  const buffer = await (await fetch('/models/crystal.glb')).arrayBuffer();
+  const buffer = await (await fetch(`${import.meta.env.BASE_URL}models/crystal.glb`)).arrayBuffer();
   const gltf = await new GLTFLoader().parseAsync(buffer, '');
   const loadMs = performance.now() - start;
   crystal = gltf.scene;

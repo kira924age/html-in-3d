@@ -2,6 +2,8 @@
 
 [@pmndrs/uikit](https://github.com/pmndrs/uikit) で three.js の3D空間にUIパネルを置くデモです（React Three Fiber は使わず、素の three.js）。
 
+デモ: https://html-in-3d.kira924age.workers.dev/uikit/
+
 - ターミナル風のUIパネル2枚（`renderer.info` などの実測値、読み込んだGLBの中身、操作ボタン、コマンド入力）と、画面下のステータスバー
 - 透明なGLB（`public/models/crystal.glb`）を置き、パネルとの前後関係が視点を回しても崩れないようにしている
 - Orbit / First Person の視点切り替えと、WASD・矢印キー・画面のスティックでの移動（画面固定の操作部品は普通のHTML）
@@ -13,7 +15,7 @@ npm install
 npm run dev
 ```
 
-http://localhost:5180/ を開きます。
+http://localhost:5180/uikit/ を開きます（Cloudflare Workers の `/uikit/` 以下で配信するため、`vite.config.js` で `base: '/uikit/'` にしています）。
 
 ## 構成
 

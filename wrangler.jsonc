@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "html-in-3d",
+  "compatibility_date": "2026-11-20",
+  // Worker のコードは持たず、dist/ を静的アセットとして配信する（dist/uikit/ が /uikit/ になる）
+  "assets": {
+    "directory": "./dist"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "html-in-3d",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix uikit run build",
+    "preview": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "4.168.0"
+  }
+}

@@ -9,7 +9,7 @@ export async function loadMonoFont() {
   const options = { charset, fontSize: 48, textureSize: [512, 512] };
   const start = performance.now();
   const families = await Promise.all(
-    ['Regular', 'Bold'].map((weight) => new TTFLoader().loadAsync({ url: `/fonts/MPLUS1Code-${weight}.subset.ttf`, ...options })),
+    ['Regular', 'Bold'].map((weight) => new TTFLoader().loadAsync({ url: `${import.meta.env.BASE_URL}fonts/MPLUS1Code-${weight}.subset.ttf`, ...options })),
   );
   // 返り値は { フォント名: { 太さ: フォントデータ } }。両方の太さを1つにまとめ、扱いやすい名前に付け替える
   const weights = Object.assign({}, ...families.flatMap((family) => Object.values(family)));
